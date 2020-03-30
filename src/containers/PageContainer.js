@@ -1,19 +1,19 @@
-import React from 'react';
-import { Router, Switch, Route, Redirect } from 'react-router';
-import { HomePage, ProfilePage, RideOverviewPage } from '../pages';
 import { createBrowserHistory } from 'history';
+import React from 'react';
+import { Redirect, Route, Router, Switch } from 'react-router';
+import { HomePage } from '../pages';
+
+const StoreContext = React.createContext({});
 
 const PageContainer = () => (
-    <main>
-        <Router history={createBrowserHistory()}>
+    <Router history={createBrowserHistory()}>
+        <StoreContext.Provider>
             <Switch>
                 <Route exact path="/home" component={HomePage} />
-                <Route path="/profile/" component={ProfilePage} />
-                <Route exact path="/rides" component={RideOverviewPage} />
                 <Redirect to="/home" />
             </Switch>
-        </Router>
-    </main>
+        </StoreContext.Provider>
+    </Router>
 );
 
 export default PageContainer;

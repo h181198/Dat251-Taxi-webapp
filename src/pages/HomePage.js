@@ -2,6 +2,7 @@ import React from 'react';
 import { routes } from '../resources';
 import { NavigationBar } from '../components/NavigationBar';
 import { Header } from '../components/skeleton';
+import { TransitForm } from '../components/forms';
 
 const navItems = [
     {
@@ -17,6 +18,9 @@ const navItems = [
 const HomePage = () => (
     <main>
         <Header title="Home" />
+
+        <TransitForm />
+
         <NavigationBar navItems={navItems} />
     </main>
 );
