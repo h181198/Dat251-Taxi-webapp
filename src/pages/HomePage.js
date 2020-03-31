@@ -1,28 +1,19 @@
 import React from 'react';
-import { routes } from '../resources';
-import { NavigationBar } from '../components/NavigationBar';
 import { Header } from '../components/skeleton';
-import { TransitForm } from '../components/forms';
+import { PositionInput, RideSelection } from '../components/forms';
+import styled from 'styled-components';
 
-const navItems = [
-    {
-        uri: routes.profile,
-        title: 'Profile'
-    },
-    {
-        uri: routes.rideOverview,
-        title: 'Take a Ride'
-    },
-]
+const MainStyled = styled.main`
+    padding: 0 10px;
+`;
 
 const HomePage = () => (
-    <main>
+    <MainStyled>
         <Header title="Home" />
 
-        <TransitForm />
-
-        <NavigationBar navItems={navItems} />
-    </main>
+        <PositionInput />
+        <RideSelection />
+    </MainStyled>
 );
 
 export default HomePage;
