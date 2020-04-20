@@ -1,1 +1,1 @@
-export { default as setTravelPointAction } from './setTravelPointAction';
+export { default as setTravelPointAction } from "./setTravelPointAction";

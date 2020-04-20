@@ -1,1 +1,1 @@
-export { default as setTravelPoint } from './setTravelPoint';
+export { default as setTravelPoint } from "./setTravelPoint";
