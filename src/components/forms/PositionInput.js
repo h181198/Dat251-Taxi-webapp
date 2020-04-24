@@ -2,23 +2,27 @@ import React from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { setTravelPoint, setDepartureTime } from "../../redux/dispatchers";
+import { SubmitButton } from "./SubmitButton";
 
 const FormGroup = styled.div`
   margin: 20px 0;
 `;
 
-const SelectStyled = styled.select`
-  display: block;
-  border: 1px solid #aaa;
-  padding: 5px;
-  margin: 5px 0;
+const StyledLabel = styled.label`
+    display: block;
+    margin: 12px;
 `;
 
-const TextInputStyled = styled.input`
-  display: block;
-  border: 1px solid #aaa;
-  padding: 5px;
-  margin: 5px 0;
+const StyledInput = styled.input`
+    display: block;
+    width: 200px;
+    height: 24px;
+    margin: 12px;
+    padding: 8px;
+    text-size: 1em;
+
+    border-radius: 8px;
+    border: 1px solid #aeb3bd;
 `;
 
 const PositionInput = () => {
@@ -80,52 +84,47 @@ const PositionInput = () => {
   return (
     <form onSubmit={handleOnSubmit}>
       <FormGroup>
-        <label htmlFor="from">Fra</label>
-        <SelectStyled id="from" onChange={handleFromChange} value={pickUpId}>
-          <option value={-1}>Velg stoppeplass</option>
+        <StyledLabel htmlFor="from">Fra</StyledLabel>
+        <StyledInput 
+          placeholder="Velg startholdeplass"
+          list="fromList" onChange={handleFromChange}
+        />
+        <datalist id="fromList">
           {stops.map((stop) => (
             <option
-              value={stop.id}
+              value={stop.name}
               selected={stop.pickUpSelected}
               key={stop.id}
-            >
-              {stop.name}
-            </option>
+            />
           ))}
-        </SelectStyled>
+        </datalist>
       </FormGroup>
       <FormGroup>
-        <label htmlFor="desitination">Til</label>
-
-        <SelectStyled
-          id="desitination"
-          onChange={handleDestinationChange}
-          value={destinationId}
-        >
-          <option value={-1}>Velg stoppeplass</option>
+        <StyledLabel htmlFor="destination">Til</StyledLabel>
+        <StyledInput 
+          placeholder="Velg stoppholdeplass" 
+          list="destinationList" 
+          onChange={handleDestinationChange} 
+        />
+        <datalist id="destinationList">
           {stops.map((stop) => (
             <option
-              value={stop.id}
-              selected={stop.destinationSelected}
+              value={stop.name}
+              selected={stop.pickUpSelected}
               key={stop.id}
-            >
-              {stop.name}
-            </option>
+            />
           ))}
-        </SelectStyled>
+        </datalist>
       </FormGroup>
       <FormGroup>
-        <label htmlFor="timeOfDeparture">Avgang (YYYY-MM-DD'T'HH:mm)</label>
-        <TextInputStyled
+        <StyledLabel htmlFor="timeOfDeparture">Avgang (YYYY-MM-DD'T'HH:mm)</StyledLabel>
+        <StyledInput
           id="timeOfDeparture"
           onChange={handleDepartueChange}
-        ></TextInputStyled>
+        ></StyledInput>
       </FormGroup>
       <FormGroup>
-        <label htmlFor="submitButton">Lag tur</label>
-        <button type="submit" id="submitButton">
-          SEND
-        </button>
+        <SubmitButton text="Lag tur" id="submitButton" />
       </FormGroup>
     </form>
   );
