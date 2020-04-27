@@ -1,0 +1,33 @@
+###
+# Add a ride
+###
+POST https://localhost:5001/api/ride
+Content-Type: application/json
+
+{
+  "startId": 1,
+  "stopId": 2,
+  "timeOfDeparture": "2020-05-01T14:08"
+}
+
+###
+# Get stops
+###
+GET https://dat250-taxi-sharing.herokuapp.com/api/stop
+
+###
+# Get rides
+###
+GET https://dat250-taxi-sharing.herokuapp.com/api/ride?start=1&stop=2&departure=2020-05-1
+
+###
+# Add a stop
+###
+POST https://dat250-taxi-sharing.herokuapp.com/api/stop
+Content-Type: application/json
+
+{
+  "name": "Bergen",
+  "longitude": 1,
+  "latitude": 4
+}
