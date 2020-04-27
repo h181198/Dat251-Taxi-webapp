@@ -31,7 +31,7 @@ const HomePage = () => {
 
     useEffect(() => {
         getStops(storeStops);
-    }, []);
+    }, [storeStops]);
 
     return (
         <MainStyled>

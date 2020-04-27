@@ -4,7 +4,7 @@ import * as actions from "../actionTypes";
 const ride = (state = initialState.ride, action) => {
   switch (action.type) {
     case actions.SET_TRAVEL_POINTS:
-      const { pickUpId, destinationId, departureTime } = action;
+      const { pickUpId, destinationId } = action;
 
       const available = state.list.filter(
         ({ startId, stopId }) =>

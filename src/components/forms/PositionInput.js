@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { setTravelPoint, setDepartureTime } from "../../redux/dispatchers";
+import { setTravelPoint } from "../../redux/dispatchers";
 import { SubmitButton } from "./SubmitButton";
 
 const FormGroup = styled.div`
