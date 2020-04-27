@@ -27,9 +27,10 @@ const MainStyled = styled.main`
 const HomePage = () => {
     const dispatch = useDispatch();
 
-    const storeStops = list => dispatch(getStopsAction(list));
-
+    
     useEffect(() => {
+        const storeStops = list => dispatch(getStopsAction(list));
+        
         getStops(storeStops);
     }, [storeStops]);
 
