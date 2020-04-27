@@ -5,7 +5,7 @@ import { NavigationBar } from '../components/NavigationBar';
 import { PositionInput, RideSelection } from '../components/forms';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import getStops from '../api/getStops';
 import { getStops as getStopsAction } from '../redux/actionCreators';
 
@@ -27,12 +27,11 @@ const MainStyled = styled.main`
 const HomePage = () => {
     const dispatch = useDispatch();
 
-    
+    const storeStops = useCallback(list => dispatch(getStopsAction(list)), [dispatch]);
+
     useEffect(() => {
-        const storeStops = list => dispatch(getStopsAction(list));
-        
         getStops(storeStops);
-    }, [storeStops]);
+    }, [dispatch, storeStops]);
 
     return (
         <MainStyled>
