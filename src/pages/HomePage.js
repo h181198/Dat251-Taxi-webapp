@@ -4,6 +4,10 @@ import { Header } from '../components/skeleton';
 import { NavigationBar } from '../components/NavigationBar';
 import { PositionInput, RideSelection } from '../components/forms';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import getStops from '../api/getStops';
+import { getStops as getStopsAction } from '../redux/actionCreators';
 
 const navItems = [
     {
@@ -20,13 +24,23 @@ const MainStyled = styled.main`
     padding: 0 10px;
 `;
 
-const HomePage = () => (
-    <MainStyled>
-        <Header title="Taxideling" />
-        <PositionInput />
-        <RideSelection />
-        <NavigationBar navItems={navItems} />
-    </MainStyled>
-);
+const HomePage = () => {
+    const dispatch = useDispatch();
+
+    const storeStops = list => dispatch(getStopsAction(list));
+
+    useEffect(() => {
+        getStops(storeStops);
+    }, []);
+
+    return (
+        <MainStyled>
+            <Header title="Taxideling" />
+            <PositionInput />
+            <RideSelection />
+            <NavigationBar navItems={navItems} />
+        </MainStyled>
+    );
+};
 
 export default HomePage;

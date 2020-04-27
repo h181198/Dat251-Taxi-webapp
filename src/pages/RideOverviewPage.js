@@ -18,6 +18,7 @@ const RideOverviewPage = () => (
     <div>
         <Header title="Ta en tur" />
         <NavigationBar navItems={navItems} />
-    </div>);
+    </div>
+);
 
 export default RideOverviewPage;

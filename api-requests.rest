@@ -1,7 +1,7 @@
 ###
 # Add a ride
 ###
-POST https://localhost:5001/api/ride
+POST https://dat250-taxi-sharing.herokuapp.com/api/ride
 Content-Type: application/json
 
 {
@@ -18,7 +18,7 @@ GET https://dat250-taxi-sharing.herokuapp.com/api/stop
 ###
 # Get rides
 ###
-GET https://dat250-taxi-sharing.herokuapp.com/api/ride?start=1&stop=2&departure=2020-05-1
+GET https://dat250-taxi-sharing.herokuapp.com/api/ride?start=1&stop=2&departure=1970-01-1
 
 ###
 # Add a stop
