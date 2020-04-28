@@ -9,20 +9,20 @@ const FormGroup = styled.div`
 `;
 
 const StyledLabel = styled.label`
-    display: block;
-    margin: 12px;
+  display: block;
+  margin: 12px;
 `;
 
 const StyledInput = styled.input`
-    display: block;
-    width: 200px;
-    height: 24px;
-    margin: 12px;
-    padding: 8px;
-    text-size: 1em;
+  display: block;
+  width: 200px;
+  height: 24px;
+  margin: 12px;
+  padding: 8px;
+  text-size: 1em;
 
-    border-radius: 8px;
-    border: 1px solid #aeb3bd;
+  border-radius: 8px;
+  border: 1px solid #aeb3bd;
 `;
 
 const PositionInput = () => {
@@ -71,7 +71,13 @@ const PositionInput = () => {
         timeOfDeparture: departureTime,
       }),
     };
-    fetch("http://localhost:45087/api/ride", requestOptions)
+    var baseUrl;
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
+      baseUrl = "http://localhost:45087";
+    } else {
+      baseUrl = "https://dat250-taxi-sharing.herokuapp.com";
+    }
+    fetch(baseUrl + "/api/ride", requestOptions)
       .then((response) => {
         console.log(response);
         response.json();
@@ -85,9 +91,10 @@ const PositionInput = () => {
     <form onSubmit={handleOnSubmit}>
       <FormGroup>
         <StyledLabel htmlFor="from">Fra</StyledLabel>
-        <StyledInput 
+        <StyledInput
           placeholder="Velg startholdeplass"
-          list="fromList" onChange={handleFromChange}
+          list="fromList"
+          onChange={handleFromChange}
         />
         <datalist id="fromList">
           {stops.map((stop) => (
@@ -101,10 +108,10 @@ const PositionInput = () => {
       </FormGroup>
       <FormGroup>
         <StyledLabel htmlFor="destination">Til</StyledLabel>
-        <StyledInput 
-          placeholder="Velg stoppholdeplass" 
-          list="destinationList" 
-          onChange={handleDestinationChange} 
+        <StyledInput
+          placeholder="Velg stoppholdeplass"
+          list="destinationList"
+          onChange={handleDestinationChange}
         />
         <datalist id="destinationList">
           {stops.map((stop) => (
@@ -117,7 +124,9 @@ const PositionInput = () => {
         </datalist>
       </FormGroup>
       <FormGroup>
-        <StyledLabel htmlFor="timeOfDeparture">Avgang (YYYY-MM-DD'T'HH:mm)</StyledLabel>
+        <StyledLabel htmlFor="timeOfDeparture">
+          Avgang (YYYY-MM-DD'T'HH:mm)
+        </StyledLabel>
         <StyledInput
           id="timeOfDeparture"
           onChange={handleDepartueChange}
