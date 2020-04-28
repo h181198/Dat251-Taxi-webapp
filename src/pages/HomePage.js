@@ -1,9 +1,13 @@
 import React from 'react';
 import { routes } from '../resources';
 import { Header } from '../components/skeleton';
-import { Input } from '../components/Input';
 import { NavigationBar } from '../components/NavigationBar';
-import { SubmitButton } from '../components/Buttons';
+import { PositionInput, RideSelection } from '../components/forms';
+import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { useEffect, useCallback } from 'react';
+import getStops from '../api/getStops';
+import { getStops as getStopsAction } from '../redux/actionCreators';
 
 const navItems = [
     {
@@ -16,34 +20,27 @@ const navItems = [
     },
 ]
 
-const dropdownItems = [
-    {
-        value: 'Bergen Busstasjon',
-    },
-    {
-        value: 'Oasen Terminal',
-    },
-    {
-        value: 'Åsane Terminal',
-    },
-    {
-        value: 'Loddefjord Terminal',
-    },
-    {
-        value: 'Lagunen Terminal',
-    },
-]
+const MainStyled = styled.main`
+    padding: 0 10px;
+`;
 
-const HomePage = () => (
-    <main>
-        <Header title="Taxideling" />
-        <form name="travelForm" method="post" href="#">
-            <Input label="Til:" name="To" placeholder="Velg startholdeplass" dropdownItems={dropdownItems}></Input>
-            <Input label="Fra:" name="From" placeholder="Velg stoppholdeplass" dropdownItems={dropdownItems}></Input>
-            <SubmitButton text="Søk" />
-        </form>
-        <NavigationBar navItems={navItems} />
-    </main>
-);
+const HomePage = () => {
+    const dispatch = useDispatch();
+
+    const storeStops = useCallback(list => dispatch(getStopsAction(list)), [dispatch]);
+
+    useEffect(() => {
+        getStops(storeStops);
+    }, [dispatch, storeStops]);
+
+    return (
+        <MainStyled>
+            <Header title="Taxideling" />
+            <PositionInput />
+            <RideSelection />
+            <NavigationBar navItems={navItems} />
+        </MainStyled>
+    );
+};
 
 export default HomePage;

@@ -16,13 +16,11 @@ const StyledButton = styled.button`
     }
 `;
 
-const SubmitButton = ({ text }) => (
-    <StyledButton type="submit">{ text }</StyledButton>
+export const SubmitButton = ({ id, text }) => (
+    <StyledButton type="submit" id={id}>{ text }</StyledButton>
 );
 
 SubmitButton.propTypes = {
     text: propTypes.string.isRequired,
+    id: propTypes.string.isRequired,
 };
-
-
-export default SubmitButton;
