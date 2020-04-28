@@ -97,11 +97,11 @@ const PositionInput = () => {
           onChange={handleFromChange}
         />
         <datalist id="fromList">
-          {stops.map((stop) => (
+          {stops.map((stop, index) => (
             <option
               value={stop.name}
               selected={stop.pickUpSelected}
-              key={stop.id}
+              key={index}
             />
           ))}
         </datalist>
@@ -114,11 +114,11 @@ const PositionInput = () => {
           onChange={handleDestinationChange}
         />
         <datalist id="destinationList">
-          {stops.map((stop) => (
+          {stops.map((stop, index) => (
             <option
               value={stop.name}
               selected={stop.pickUpSelected}
-              key={stop.id}
+              key={index}
             />
           ))}
         </datalist>
