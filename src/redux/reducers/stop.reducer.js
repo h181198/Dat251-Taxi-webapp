@@ -5,17 +5,17 @@ const stop = (state = initialState.stop, action) => {
   switch (action.type) {
     case actions.GET_STOPS:
       const { list } = action;
-      
+
       const stops = list.map((stop, index) => ({
         ...stop,
-        key: index
+        key: index,
       }));
 
       return {
         ...state,
-         list: stops
+        list: stops,
       };
-    
+
     case actions.SET_TRAVEL_POINTS:
       return {
         ...state,
@@ -24,10 +24,10 @@ const stop = (state = initialState.stop, action) => {
           destination: action.destinationId,
           departureTime: action.departureTime,
         },
-        list: state.list.map((stop) => ({
+        list: state.list.map((stop, index) => ({
           ...stop,
-          pickUpSelected: action.pickUpId === stop.id,
-          destinationSelected: action.destinationId === stop.id,
+          pickUpSelected: action.pickUpId === index,
+          destinationSelected: action.destinationId === index,
         })),
       };
     default:
